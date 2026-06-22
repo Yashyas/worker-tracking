@@ -57,13 +57,13 @@ export function AddWorkerDialog({ projectId }: { projectId: string }) {
           </div>
           <div className="space-y-2">
             <Label htmlFor="workerType">Worker Type</Label>
-            <Select value={workerType} onValueChange={(v) => { if (v !== null) setWorkerType(v); }} name="workerType">
+            <Select value={workerType} onValueChange={(v) => { if (v !== null) setWorkerType(v); }}>
               <SelectTrigger>
                 <SelectValue placeholder="Select type" />
               </SelectTrigger>
               <SelectContent>
                 {WORKER_TYPES.map((type) => (
-                  <SelectItem key={type} value={type === "Other" ? "" : type}>
+                  <SelectItem key={type} value={type}>
                     {type}
                   </SelectItem>
                 ))}

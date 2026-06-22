@@ -70,14 +70,13 @@ export function EditWorkerDialog({ workerId, name, workerType, hourlyWage }: Edi
             <Select
               value={selectedType}
               onValueChange={(v) => { if (v !== null) setSelectedType(v); }}
-              name="workerType"
             >
               <SelectTrigger>
                 <SelectValue placeholder="Select type" />
               </SelectTrigger>
               <SelectContent>
                 {WORKER_TYPES.map((type) => (
-                  <SelectItem key={type} value={type === "Other" ? "" : type}>
+                  <SelectItem key={type} value={type}>
                     {type}
                   </SelectItem>
                 ))}
