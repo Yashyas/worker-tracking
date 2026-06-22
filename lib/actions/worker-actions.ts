@@ -39,6 +39,28 @@ export async function listWorkersByProject(projectId: string, date?: Date) {
   });
 }
 
+export async function updateWorker(formData: FormData) {
+  const workerId = formData.get("workerId") as string;
+  const name = formData.get("name") as string;
+  const workerType = formData.get("workerType") as string;
+  const hourlyWage = formData.get("hourlyWage") as string;
+
+  if (!name?.trim()) throw new Error("Worker name is required");
+  if (!hourlyWage || isNaN(Number(hourlyWage))) throw new Error("Valid hourly wage is required");
+
+  const worker = await prisma.worker.update({
+    where: { id: workerId },
+    data: {
+      name: name.trim(),
+      workerType: workerType?.trim() || "",
+      hourlyWage: Number(hourlyWage),
+    },
+  });
+
+  revalidatePath(`/projects/${worker.projectId}`);
+  revalidatePath(`/projects/${worker.projectId}/workers/${workerId}`);
+}
+
 export async function getWorker(workerId: string) {
   return prisma.worker.findUnique({
     where: { id: workerId },

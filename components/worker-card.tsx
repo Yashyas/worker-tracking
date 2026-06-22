@@ -8,6 +8,7 @@ import { AttendanceToggle } from "./attendance-toggle";
 import { TimeBlockChip } from "./time-block-chip";
 import { TimeBlockPicker } from "./time-block-picker";
 import { ConfirmDialog } from "./confirm-dialog";
+import { EditWorkerDialog } from "./edit-worker-dialog";
 import { calculateTotalHours, calculateDayWage, formatCurrency } from "@/lib/wages";
 import { markAttendance, addTimeBlock, deleteTimeBlock, confirmMarkAbsent } from "@/lib/actions/attendance-actions";
 import { useRouter } from "next/navigation";
@@ -73,10 +74,18 @@ export function WorkerCard({ workerId, projectId, name, workerType, hourlyWage, 
                 <span className="text-xs text-muted-foreground">₹{Number(hourlyWage).toFixed(2)}/hr</span>
               </div>
             </Link>
-            <AttendanceToggle
-              value={attendance?.status || null}
-              onValueChange={handleToggle}
-            />
+            <div className="flex items-center gap-2 shrink-0">
+              <EditWorkerDialog
+                workerId={workerId}
+                name={name}
+                workerType={workerType}
+                hourlyWage={hourlyWage}
+              />
+              <AttendanceToggle
+                value={attendance?.status || null}
+                onValueChange={handleToggle}
+              />
+            </div>
           </div>
 
           {attendance?.status === "PRESENT" && (

@@ -8,6 +8,7 @@ import { ArrowLeft } from "lucide-react";
 import { StatusBadge } from "@/components/status-badge";
 import { MonthTabs } from "@/components/month-tabs";
 import { ExportButton } from "@/components/export-button";
+import { EditWorkerDialog } from "@/components/edit-worker-dialog";
 import { MonthlyAttendanceTable } from "@/components/monthly-attendance-table";
 import { getWorker, getWorkerMonthlyData, getWorkerAvailableMonths } from "@/lib/actions/worker-actions";
 import { format, startOfMonth, endOfMonth, eachDayOfInterval } from "date-fns";
@@ -134,6 +135,12 @@ export default function WorkerPage() {
           <div>
             <div className="flex items-center gap-2">
               <h1 className="text-xl font-semibold">{worker.name}</h1>
+              <EditWorkerDialog
+                workerId={worker.id}
+                name={worker.name}
+                workerType={worker.workerType}
+                hourlyWage={Number(worker.hourlyWage)}
+              />
               {worker.workerType && (
                 <StatusBadge status={worker.project.status as "ACTIVE" | "COMPLETED" | "ARCHIVED"} />
               )}

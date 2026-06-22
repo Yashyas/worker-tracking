@@ -52,7 +52,7 @@ export function ProjectCard({ id, name, location, status, workerCount, onStatusC
             <DropdownMenuContent align="end">
               {status !== "COMPLETED" && (
                 <DropdownMenuItem onClick={() => onStatusChange("COMPLETED")}>
-                  Mark Completed
+                  Completed
                 </DropdownMenuItem>
               )}
               {status !== "ARCHIVED" && (
