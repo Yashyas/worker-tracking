@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
 import { MoreHorizontal } from "lucide-react";
-import type { ProjectStatus } from "@/lib/generated/prisma/enums";
+import type { ProjectStatus } from "@prisma/client";
 
 interface ProjectCardProps {
   id: string;

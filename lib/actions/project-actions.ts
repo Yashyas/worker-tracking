@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
-import type { ProjectStatus } from "@/lib/generated/prisma/enums";
+import type { ProjectStatus } from "@prisma/client";
 
 export async function createProject(formData: FormData) {
   const name = formData.get("name") as string;

@@ -1,7 +1,7 @@
 import { ProjectCard } from "@/components/project-card";
 import { AddProjectDialog } from "@/components/add-project-dialog";
 import { listProjects, updateProjectStatus } from "@/lib/actions/project-actions";
-import type { ProjectStatus } from "@/lib/generated/prisma/enums";
+import type { ProjectStatus } from "@prisma/client";
 import Link from "next/link";
 
 const TABS = [

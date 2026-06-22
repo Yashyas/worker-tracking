@@ -1,5 +1,5 @@
 import { Badge } from "@/components/ui/badge";
-import type { ProjectStatus } from "@/lib/generated/prisma/enums";
+import type { ProjectStatus } from "@prisma/client";
 
 const statusConfig: Record<ProjectStatus, { label: string; variant: "default" | "secondary" | "outline" }> = {
   ACTIVE: { label: "Active", variant: "default" },

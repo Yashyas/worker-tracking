@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { splitShiftIfOvernight, calculateHoursBetween } from "@/lib/hours";
-import type { AttendanceStatus } from "@/lib/generated/prisma/enums";
+import type { AttendanceStatus } from "@prisma/client";
 
 export async function markAttendance(
   workerId: string,
