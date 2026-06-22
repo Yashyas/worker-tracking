@@ -1,0 +1,64 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum ProjectStatus {
+  ACTIVE
+  COMPLETED
+  ARCHIVED
+}
+
+enum AttendanceStatus {
+  PRESENT
+  ABSENT
+}
+
+model Project {
+  id        String          @id @default(cuid())
+  name      String
+  location  String?
+  status    ProjectStatus   @default(ACTIVE)
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+  workers   Worker[]
+}
+
+model Worker {
+  id         String       @id @default(cuid())
+  projectId   String
+  project     Project      @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  name        String
+  workerType  String
+  hourlyWage  Decimal      @db.Decimal(10, 2)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  attendances Attendance[]
+}
+
+model Attendance {
+  id         String           @id @default(cuid())
+  workerId   String
+  worker     Worker           @relation(fields: [workerId], references: [id], onDelete: Cascade)
+  date       DateTime         @db.Date
+  status     AttendanceStatus
+  timeBlocks TimeBlock[]
+  createdAt  DateTime         @default(now())
+  updatedAt  DateTime         @updatedAt
+
+  @@unique([workerId, date])
+}
+
+model TimeBlock {
+  id           String     @id @default(cuid())
+  attendanceId String
+  attendance   Attendance @relation(fields: [attendanceId], references: [id], onDelete: Cascade)
+  fromTime     String
+  toTime       String
+  hoursWorked  Decimal    @db.Decimal(5, 2)
+  createdAt    DateTime   @default(now())
+}
