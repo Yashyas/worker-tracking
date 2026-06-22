@@ -20,13 +20,13 @@ export function AttendanceToggle({ value, onValueChange, disabled }: AttendanceT
     >
       <ToggleGroupItem
         value="PRESENT"
-        className="data-[state=on]:bg-green-500 data-[state=on]:text-white min-w-20"
+        className="aria-pressed:bg-green-500 aria-pressed:text-white min-w-20"
       >
         Present
       </ToggleGroupItem>
       <ToggleGroupItem
         value="ABSENT"
-        className="data-[state=on]:bg-rose-500 data-[state=on]:text-white min-w-20"
+        className="aria-pressed:bg-rose-500 aria-pressed:text-white min-w-20"
       >
         Absent
       </ToggleGroupItem>
